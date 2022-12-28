@@ -1,0 +1,12 @@
+### get method
+GET http://localhost:8000/
+
+### POST 
+POST http://localhost:8000/api/v1/user
+Content-Type:application/json
+
+{
+    "name": "Prem Acharay",
+    "email": "a@aq11.com",
+    "pin": 1234
+}
