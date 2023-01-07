@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser } from "../userModel/UserModel.js";
+import { createUser, getSingleUser } from "../userModel/UserModel.js";
 
 const router = express.Router();
 
@@ -26,9 +26,30 @@ router.post("/", async (req, res, next) => {
   } catch (error) {
     if (error.message.includes("E11000 duplicate key error collection")) {
       error.gErrorCode = 200;
-      error.message = "already a";
+      error.message = "already exist";
     }
 
+    next(error);
+  }
+});
+
+//login user
+router.post("/login", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const result = await getSingleUser(req.body);
+    console.log(result);
+    result?._id
+      ? res.json({
+          status: "success",
+          message: "Loged In",
+          result,
+        })
+      : res.json({
+          status: "error",
+          message: "Invalid login",
+        });
+  } catch (error) {
     next(error);
   }
 });

@@ -2,9 +2,11 @@ import mongoose from "mongoose";
 
 export const connectMongodb = () => {
   try {
+    const mongoURL = process.env.MONGODB_URL;
+
     mongoose.set("strictQuery", false);
-    const mongoURL = mongoose.connect("mongodb://localhost:27017/crubdb");
-    mongoURL && console.log("Mongo connected");
+    const conn = mongoose.connect(mongoURL);
+    conn && console.log("Mongo connected");
   } catch (error) {
     console.log("error from connectMongoDb");
   }

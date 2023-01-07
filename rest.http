@@ -10,3 +10,23 @@ Content-Type:application/json
     "email": "a@aq11.com",
     "pin": 1234
 }
+
+
+
+//===============Trans API
+### get
+GET http://localhost:8000/api/v1/transaction
+
+
+### add users transaction
+
+### add users transactions
+POST   http://localhost:8000/api/v1/transaction
+Content-Type: application/json
+Authorization: 63ae3df8eac03dbb252cfad1
+
+{
+    "type": "income",
+    "name" : "shopping",
+    "amount": 122
+}

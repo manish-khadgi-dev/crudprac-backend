@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 
 const app = express();
@@ -6,6 +8,8 @@ const PORT = process.env.PORT || 8000;
 //middlewares
 import cors from "cors";
 import morgan from "morgan";
+import path from "path";
+const __dirname = path.resolve();
 
 //db connection
 import { connectMongodb } from "./src/config/dbConfig.js";
@@ -17,9 +21,24 @@ app.use(express.json());
 
 //routers
 import userRouter from "./src/routers/userRouter.js";
+import transRouter from "./src/routers/transRouter.js";
+import { userAuth } from "./src/midllewares/authMidlleware.js";
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/transaction", userAuth, transRouter);
 
-//uncaugh router hanlder   page not found hanlde garna lai
+// static content serve
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+//serving frontend
+app.use("/", (req, res) => {
+  try {
+    res.sendFile(path.join(__dirname, "/index.html"));
+  } catch (error) {
+    next(error);
+  }
+});
+
+//uncaugh router hanlder   page not found hanlde garna laiX
 app.use("*", (req, res, next) => {
   const error = {
     gErrorCode: 404,
