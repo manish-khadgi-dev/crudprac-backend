@@ -37,7 +37,7 @@ router.get("/", async (req, res, next) => {
 
     res.json({
       status: "success",
-      message: "New Transactions has been added successfully",
+      message: "getting all the transaction ",
       result,
     });
   } catch (error) {

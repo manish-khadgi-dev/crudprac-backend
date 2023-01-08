@@ -16,6 +16,7 @@ Content-Type:application/json
 //===============Trans API
 ### get
 GET http://localhost:8000/api/v1/transaction
+Authorization: 63b8a53b81cdffb21c42f6e5
 
 
 ### add users transaction
@@ -23,7 +24,7 @@ GET http://localhost:8000/api/v1/transaction
 ### add users transactions
 POST   http://localhost:8000/api/v1/transaction
 Content-Type: application/json
-Authorization: 63ae3df8eac03dbb252cfad1
+Authorization: 63b902de402e90ed36bc0852
 
 {
     "type": "income",

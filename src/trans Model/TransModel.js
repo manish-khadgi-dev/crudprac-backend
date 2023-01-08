@@ -7,14 +7,14 @@ export const createTrans = (newTransObj) => {
 
 // read Trans @filter munst be an object {}
 export const getTransByUserId = (userId) => {
-  return TransSchema.find({ userId });
+  return TransSchema.find();
 };
 
 // delete Trans
 
 export const deleteTransById = (idArg, userId) => {
   return TransSchema.deleteMany({
-    userId,
     _id: { $in: idArg },
+    userId,
   });
 };
