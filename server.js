@@ -4,7 +4,7 @@ import express from "express";
 
 const app = express();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.MONGO_URL || 8000;
 
 import cors from "cors";
 import morgan from "morgan";
